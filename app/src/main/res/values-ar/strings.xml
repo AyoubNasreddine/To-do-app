@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">To do app</string>
+    <string name ="tasks">المهام</string>
+    <string name ="task">المهمة</string>
+    <string name="enter_the_task_name">ادخل اسم المهمة</string>
+    <string name="done">حفظ</string>
+    <string name="delete">حذف</string>
+</resources>
