@@ -3,14 +3,12 @@ package dark.codewithayoub.todoapp;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-
 import dark.codewithayoub.todoapp.databinding.ActivityAddTaskBinding;
+import dark.codewithayoub.todoapp.db.Repository;
 import dark.codewithayoub.todoapp.db.Task;
 import dark.codewithayoub.todoapp.db.TaskViewModel;
-
 public class AddTaskActivity extends AppCompatActivity {
     private ActivityAddTaskBinding binding ;
     private TaskViewModel db;
@@ -39,9 +37,16 @@ public class AddTaskActivity extends AppCompatActivity {
         binding.doneBtn.setOnClickListener(view -> {
             String name = binding.taskName.getText().toString();
             Task task = new Task(name,false);
-            db.insertTask(task);
-            Toast.makeText(this, "Task Added !", Toast.LENGTH_SHORT).show();
-            finish();
+            if(id_task != -1){
+                task.setId(id_task);
+                db.updateTask(task);
+                Toast.makeText(this, "Task Updated !", Toast.LENGTH_SHORT).show();
+                finish();
+            }else {
+                db.insertTask(task);
+                Toast.makeText(this, "Task Added !", Toast.LENGTH_SHORT).show();
+                finish();
+            }
         });
         binding.delBtn.setOnClickListener(view ->{
             if (id_task!=-1){
